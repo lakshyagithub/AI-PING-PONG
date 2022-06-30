@@ -17,3 +17,9 @@ body
 .heading .status {
     font-size: 5px;
 }
+
+.footer
+{
+    background-color: white;
+    line-height: 2;
+}
