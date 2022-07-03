@@ -1,10 +1,7 @@
+var paddle2 = 10, paddle1 = 10;
 
-/*created by lakshya singh chauhan */
-
-var paddle2 =10,paddle1=10;
-
-var paddle1X = 10,paddle1Height = 110;
-var paddle2Y = 685,paddle2Height = 70;
+var paddle1X = 10, paddle1Height = 110;
+var paddle2Y = 685, paddle2Height = 70;
 
 var score1 = 0, score2 =0;
 var paddle1Y;
@@ -23,12 +20,25 @@ var ball = {
 
 function setup(){
   var canvas =  createCanvas(700,600);
+  canvas.center();
+  canvas.parent('canvas');
+
+  capture = createCapture(VIDEO);
+  capture.size(700, 600);
+  capture.hide();
+
+  poseNet = ml5.poseNet(capture, modelLoaded);
 }
 
+function modelLoaded() {
+  console.log("Model is loaded");
+}
 
 function draw(){
 
  background(0); 
+
+ image(capture, 0, 0, 700, 600);
 
  fill("black");
  stroke("black");
@@ -38,7 +48,7 @@ function draw(){
  stroke("black");
  rect(0,0,20,700);
  
-   //funtion paddleInCanvas call 
+   //function paddleInCanvas call 
    paddleInCanvas();
  
    //left paddle
