@@ -18,6 +18,10 @@ var ball = {
     dy:3
 }
 
+rightwristX = "";
+rightwristY = "";
+scorerightWrist = "";
+
 function setup(){
   var canvas =  createCanvas(700,600);
   canvas.center();
@@ -28,10 +32,19 @@ function setup(){
   capture.hide();
 
   poseNet = ml5.poseNet(capture, modelLoaded);
+  poseNet.on('pose', gotResults);
 }
 
 function modelLoaded() {
   console.log("Model is loaded");
+}
+
+function gotResults(results) {
+  if (results.length > 0) {
+    rightwristX = results[0].pose.rightWrist.x;
+    rightwristY = results[0].pose.rightWrist.y;
+    scorerightWrist = results[0].pose.keypoints[10].score;
+  }
 }
 
 function draw(){
