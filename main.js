@@ -48,6 +48,11 @@ function gotResults(results) {
 }
 
 function draw(){
+  if (scorerightWrist > 0.2) {
+    fill(255, 255, 255);
+    stroke(255, 255, 255);
+    circle(rightwristX, rightwristY, 10);
+  }
 
  background(0); 
 
